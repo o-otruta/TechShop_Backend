@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from datetime import datetime
 
 class ProductBase(BaseModel):
@@ -12,8 +12,7 @@ class ProductRead(ProductBase):
     id: int
     created_at: datetime
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class OrderBase(BaseModel):
@@ -33,8 +32,7 @@ class OrderRead(BaseModel):
     status: str
     created_at: datetime
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class InvoiceRead(BaseModel):
@@ -42,5 +40,5 @@ class InvoiceRead(BaseModel):
     invoice_date: datetime
     order: OrderRead
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
+

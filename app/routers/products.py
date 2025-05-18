@@ -1,16 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from .. import models, schemas
-from ..database import SessionLocal
+from ..database import SessionLocal, get_db
 
 router = APIRouter(prefix="/products", tags=["Products"])
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @router.post("/", response_model=schemas.ProductRead)
 def create_product(product: schemas.ProductCreate, db: Session = Depends(get_db)):

@@ -1,18 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, UTC, timedelta
 from .. import models, schemas
-from ..database import SessionLocal
+from ..database import SessionLocal, get_db
 from ..dependencies.roles import role_required
 
 router = APIRouter(prefix="/orders", tags=["Orders"])
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @router.post("/", response_model=schemas.OrderRead, dependencies=[Depends(role_required("cashier"))])
 def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
@@ -22,7 +15,7 @@ def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
 
     discount_applied = False
     final_price = product.price
-    if product.created_at < datetime.utcnow() - timedelta(days=30):
+    if product.created_at < datetime.now(UTC) - timedelta(days=30):
         final_price *= 0.8
         discount_applied = True
 
