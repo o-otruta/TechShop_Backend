@@ -15,7 +15,7 @@ This project implements a backend system for managing orders in a tech store usi
 ## Installation
 
 ```bash
-git clone https://github.com/your-username/techshop-backend.git
+git clone https://github.com/o-otruta/TechShop_Backend.git
 pip install -r requirements.txt
 ```
 
