@@ -7,7 +7,7 @@ router = APIRouter(prefix="/products", tags=["Products"])
 
 @router.post("/", response_model=schemas.ProductRead)
 def create_product(product: schemas.ProductCreate, db: Session = Depends(get_db)):
-    db_product = models.Product(**product.dict())
+    db_product = models.Product(**product.model_dump())
     db.add(db_product)
     db.commit()
     db.refresh(db_product)

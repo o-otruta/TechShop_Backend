@@ -1,6 +1,6 @@
 from app.database import SessionLocal
 from app.models import Product
-from datetime import datetime, UTC, timedelta
+from datetime import datetime, timedelta
 
 def seed_products():
     db = SessionLocal()
@@ -10,7 +10,7 @@ def seed_products():
         db.close()
         return
 
-    now = datetime.now(UTC)
+    now = datetime.now()
     items = [
         Product(name="TV", price=9999.99, created_at=now),
         Product(name="Laptop", price=18999.00, created_at=now - timedelta(days=55)),
