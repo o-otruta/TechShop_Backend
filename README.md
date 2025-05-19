@@ -2,8 +2,6 @@
 
 This project implements a backend system for managing orders in a tech store using FastAPI and SQLite.
 
-## About
-
 - RESTful API
 - Three user roles:
   - `cashier`: creates orders, generates invoices, payments
@@ -36,6 +34,7 @@ pytest
 
 ## Assets
 
-- **fixtures.py** : creates five products
+- `fixtures.py` : run to create five products
+- `TechShopBackend.postman_collection.json` : postman collection
 
 

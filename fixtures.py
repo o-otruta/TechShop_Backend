@@ -1,6 +1,8 @@
-from app.database import SessionLocal
-from app.models import Product
+from app.database import SessionLocal, engine
+from app.models import Product, Base
 from datetime import datetime, timedelta
+
+Base.metadata.create_all(bind=engine)
 
 def seed_products():
     db = SessionLocal()
