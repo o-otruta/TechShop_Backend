@@ -13,9 +13,11 @@ This project implements a backend system for managing orders in a tech store usi
 - Postman collection included
 
 ## Installation
-
+NOTE: Requires Python 3.12+.
 ```bash
 git clone https://github.com/o-otruta/TechShop_Backend.git
+python -m venv .venv
+source .venv/bin/activate  # for windows: .venv/Scripts/activate
 pip install -r requirements.txt
 ```
 
