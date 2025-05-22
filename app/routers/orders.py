@@ -16,7 +16,7 @@ def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
     discount_applied = False
     final_price = product.price
     if product.created_at < datetime.now() - timedelta(days=30):
-        final_price *= 0.8
+        final_price = round(product.price * 0.8)
         discount_applied = True
 
     db_order = models.Order(product_id=product.id, final_price=final_price, discount_applied=discount_applied)

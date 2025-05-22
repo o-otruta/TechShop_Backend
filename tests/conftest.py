@@ -45,7 +45,7 @@ def client_auth_accountant():
 def old_product():
     response = client.post("/products/", json={
         "name": "Laptop",
-        "price": 1234.56
+        "price": 123456
     })
     product = response.json()
 

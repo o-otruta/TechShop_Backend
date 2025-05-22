@@ -3,7 +3,7 @@ from datetime import datetime
 
 class ProductBase(BaseModel):
     name: str
-    price: float
+    price: int
 
 class ProductCreate(ProductBase):
     pass
@@ -27,7 +27,7 @@ class OrderUpdateStatus(BaseModel):
 class OrderRead(BaseModel):
     id: int
     product: ProductRead
-    final_price: float
+    final_price: int
     discount_applied: bool
     status: str
     created_at: datetime

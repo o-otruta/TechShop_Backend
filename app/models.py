@@ -7,7 +7,7 @@ class Product(Base):
     __tablename__ = "products"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
-    price = Column(Float)
+    price = Column(Integer)
     created_at = Column(DateTime, default=datetime.now())
 
 class Order(Base):
@@ -16,7 +16,7 @@ class Order(Base):
     product_id = Column(Integer, ForeignKey("products.id"))
     status = Column(String, default="created")  # created, done, paid
     created_at = Column(DateTime, default=datetime.now())
-    final_price = Column(Float)
+    final_price = Column(Integer)
     discount_applied = Column(Boolean, default=False)
 
     product = relationship("Product")
