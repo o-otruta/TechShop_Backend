@@ -1,10 +1,11 @@
 from pydantic import BaseModel, ConfigDict
 from datetime import datetime
-from enum import Enum
+from app.enums import Currency, OrderStatus
 
 class ProductBase(BaseModel):
     name: str
     price: int
+    currency: Currency
 
 class ProductCreate(ProductBase):
     pass
@@ -14,11 +15,6 @@ class ProductRead(ProductBase):
     created_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
-
-class OrderStatus(str, Enum):
-    CREATED = "created"
-    DONE = "done"
-    PAID = "paid"
 
 class OrderBase(BaseModel):
     product_id: int
