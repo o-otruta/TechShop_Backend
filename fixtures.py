@@ -1,6 +1,7 @@
 from app.database import SessionLocal, engine
 from app.models import Product, Base
 from datetime import datetime, timedelta
+from app.enums import Currency
 
 Base.metadata.create_all(bind=engine)
 
@@ -14,11 +15,11 @@ def seed_products():
 
     now = datetime.now()
     items = [
-        Product(name="TV", price=9999.99, created_at=now),
-        Product(name="Laptop", price=18999.00, created_at=now - timedelta(days=55)),
-        Product(name="Pad", price=6999.99, created_at=now),
-        Product(name="Mouse", price=8499.00, created_at=now - timedelta(days=99)),
-        Product(name="Keyboard", price=1999.00, created_at=now),
+        Product(name="TV", price=999999, currency=Currency.UAH, created_at=now),
+        Product(name="Laptop", price=1899900, currency=Currency.UAH, created_at=now - timedelta(days=55)),
+        Product(name="Pad", price=699999, currency=Currency.UAH, created_at=now),
+        Product(name="Mouse", price=849900, currency=Currency.UAH, created_at=now - timedelta(days=99)),
+        Product(name="Keyboard", price=199900, currency=Currency.UAH, created_at=now),
     ]
 
     db.add_all(items)

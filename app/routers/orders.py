@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from datetime import date, datetime, timedelta
-from .. import models, schemas
-from ..database import SessionLocal, get_db
-from ..dependencies.roles import role_required
+from app import models, schemas
+from app.database import SessionLocal, get_db
+from app.dependencies.roles import role_required
 
 router = APIRouter(prefix="/orders", tags=["Orders"])
 

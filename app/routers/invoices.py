@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from .. import models, schemas
-from ..database import SessionLocal, get_db
-from ..dependencies.roles import role_required
+from app import models, schemas
+from app.database import SessionLocal, get_db
+from app.dependencies.roles import role_required
 
 router = APIRouter(prefix="/invoices", tags=["Invoices"])
 

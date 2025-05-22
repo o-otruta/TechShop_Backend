@@ -2,7 +2,7 @@ from sqlalchemy import Column, Boolean, Integer, String, Enum as SqlEnum, DateTi
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from app.enums import Currency, OrderStatus
-from .database import Base
+from app.database import Base
 
 class Product(Base):
     __tablename__ = "products"
