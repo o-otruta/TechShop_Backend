@@ -1,15 +1,11 @@
 import os
 import pytest
-from datetime import datetime, timedelta
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 from app.database import Base, get_db
-from app.models import Product
 from fastapi.testclient import TestClient
 from app.main import app
-
-engine = create_engine("sqlite:///./test.db", connect_args={"check_same_thread": False})
-TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+from datetime import datetime, timedelta
+from tests.db import engine, TestingSessionLocal
+from tests.factories import ProductFactory
 
 def override_get_db():
     db = TestingSessionLocal()
@@ -29,30 +25,27 @@ def setup_database():
     yield
     Base.metadata.drop_all(bind=engine)
 
+
 @pytest.fixture
 def client_auth_cashier():
     return {"Authorization": "Bearer cashier"}
+
 
 @pytest.fixture
 def client_auth_consultant():
     return {"Authorization": "Bearer consultant"}
 
+
 @pytest.fixture
 def client_auth_accountant():
     return {"Authorization": "Bearer accountant"}
 
+
+@pytest.fixture
+def new_product():
+    return ProductFactory()
+
+
 @pytest.fixture
 def old_product():
-    response = client.post("/products/", json={
-        "name": "Laptop",
-        "price": 123456,
-        "currency": "UAH"
-    })
-    product = response.json()
-
-    db = TestingSessionLocal()
-    db_product = db.get(Product, product["id"])
-    db_product.created_at = datetime.now() - timedelta(days=40)
-    db.commit()
-    db.close()
-    return product
+    return ProductFactory(created_at=datetime.now() - timedelta(days=40))

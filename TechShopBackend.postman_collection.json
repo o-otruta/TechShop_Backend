@@ -27,7 +27,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"Test Product\",\r\n  \"price\": 5000\r\n}",
+					"raw": "{\r\n  \"name\": \"Test Product\",\r\n  \"price\": 5000,\r\n  \"currency\": \"UAH\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
